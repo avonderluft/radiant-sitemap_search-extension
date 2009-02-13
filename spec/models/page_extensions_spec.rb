@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Page, "search" do
-  scenario :pages
+  dataset :pages
 
   before :each do
     if defined?(ConcurrentDraft)

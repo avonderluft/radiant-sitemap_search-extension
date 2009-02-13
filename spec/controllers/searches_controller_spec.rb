@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe SearchesController do
-  scenario :users
+  dataset :users
   
   before :each do
     @snippet, @page = mock_model(Snippet), mock_model(Page)

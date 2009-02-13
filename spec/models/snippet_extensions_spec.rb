@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Snippet, "search" do
-  scenario :snippets
+  dataset :snippets
   before :each do
     if defined?(ConcurrentDraft)
       snippets(:first).update_attributes(:draft_content => "Special draft content")

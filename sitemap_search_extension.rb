@@ -4,7 +4,7 @@
 class SitemapSearchExtension < Radiant::Extension
   version "1.1"
   description "Adds a simple search feature to pages and snippets."
-  url "http://seancribbs.com"
+  url "http://github.com/avonderluft/radiant-sitemap_search-extension/tree/master"
   
   define_routes do |map|
     map.resources :searches, :path_prefix => '/admin'
