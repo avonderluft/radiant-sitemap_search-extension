@@ -28,7 +28,7 @@ module SitemapSearch::Model
       # replicate the condition for each word, join them all with an AND
       all_conditions = ([fields_per_word] * words.size).map {|stmt| "(#{stmt})"}.join(" AND ")
       query_conditions = [all_conditions, wrapped_words].flatten
-      find(:all, :conditions => query_conditions, :include => includes)
+      find(:all, :conditions => query_conditions, :joins => includes)
     end
   end
 end

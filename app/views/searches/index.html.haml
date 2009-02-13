@@ -21,7 +21,7 @@
             %span.w1= att.humanize
   %tbody
     - if !@pages.blank?
-      = render :partial => "admin/page/page", :collection => @pages
+      = render :partial => "admin/pages/page", :collection => @pages
     - else
       %tr
         %td.note{:colspan => list_display_attributes.size }
