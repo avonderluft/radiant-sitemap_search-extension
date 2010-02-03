@@ -9,6 +9,8 @@
   Jump to:
   = link_to 'Pages', '#pages'
   = link_to 'Snippets', '#snippets'
+  - if defined?(BannerRotator)
+    = link_to 'Banners', '#banners'
 
 %h2#pages Pages
 
@@ -50,7 +52,31 @@
         %td.note{:colspan => 3 }
           = params[:q].blank? ? "Empty search." : "No results from query."
           Please try again.
-    
+
+- if defined?(BannerRotatorExtension)
+
+  %h2#banners Banners
+
+  %table#banner_list.index.sortable{:summary=>"Banner search results for your query '#{params[:q]}'"}
+    %thead
+      %tr
+        %th
+          %a
+            %span.w1 Name
+        %th
+          %a
+            %span.w1 Link URL
+        %th
+          %a
+            %span.w1 Updated at
+    %tbody
+      - if !@banners.blank?
+        = render :partial => "banner", :collection => @banners
+      - else
+        %tr
+          %td.note{:colspan => 3 }
+            = params[:q].blank? ? "Empty search." : "No results from query."
+            Please try again.    
 
 - content_for :page_css do
   :sass

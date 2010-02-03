@@ -2,8 +2,8 @@
 # require_dependency 'application'
 
 class SitemapSearchExtension < Radiant::Extension
-  version "1.1"
-  description "Adds a simple search feature to pages and snippets."
+  version "1.2"
+  description "Adds a simple search feature to pages, snippets and banners"
   url "http://github.com/avonderluft/radiant-sitemap_search-extension/tree/master"
   
   define_routes do |map|
@@ -18,5 +18,9 @@ class SitemapSearchExtension < Radiant::Extension
     Snippet.send :include, SitemapSearch::Model
     admin.page.index.add :top, 'admin/sitemap_search'
     admin.snippet.index.add :top, 'admin/sitemap_search'
+    if defined?(BannerRotatorExtension)
+      Banner.send :include, SitemapSearch::Model
+      admin.banner.index.add :top, 'admin/sitemap_search'
+    end
   end
 end

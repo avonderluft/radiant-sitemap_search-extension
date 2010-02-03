@@ -2,7 +2,10 @@
   %p
     - if defined?(Site) && @site
       = hidden_field_tag :site_id, @site.id
-    = text_field_tag :q, params[:q], :title => "Search for pages and snippets"
+    - if defined?(BannerRotator)
+      = text_field_tag :q, params[:q], :title => "Search for pages, snippets and banners"
+    - else
+      = text_field_tag :q, params[:q], :title => "Search for pages and snippets"
     %input{:type =>"submit", :value =>"Search"}
 - content_for :page_css do
   :sass

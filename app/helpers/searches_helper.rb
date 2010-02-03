@@ -8,6 +8,8 @@ module SearchesHelper
       %Q{#{image(icon, :height => 18)} <span class="title">#{object.title}</span>}
     when Snippet
       %Q{#{image('snippet', :height => 18)} <span class="title">#{object.name}</span>}
+    when Banner
+      %Q{#{image('pictures', :height => 18)} <span class="title">#{object.name}</span>}
     end
   end
   
@@ -17,6 +19,8 @@ module SearchesHelper
       page_edit_path(:id => object)
     when Snippet
       snippet_edit_path(:id => object)
+    when Banner
+      edit_admin_banner_path(:id => object)
     end
   end
   

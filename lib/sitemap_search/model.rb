@@ -10,6 +10,8 @@ module SitemapSearch::Model
     elsif base == Snippet
       base.search_fields = [:name, :content]
       base.search_fields << :draft_content if defined?(ConcurrentDraft)
+    elsif defined?(BannerRotator) && base == Banner
+      base.search_fields = [:name, :background_image, :foreground_image, :link_url]
     end
   end
   
