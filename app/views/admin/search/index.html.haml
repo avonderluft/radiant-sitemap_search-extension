@@ -64,25 +64,26 @@
             %td.note{:colspan => atts.size }
               = params[:q].blank? ? "Empty search." : "No results from query."
               
-    - results_label = t('templates') + query
-    %h3#templates
-      = results_label
-      = render :partial => 'results_nav'
-    %table#template_list.index.sortable{:summary=>results_label}
-      %thead
-        %tr
-          - atts = %w{name page_class_name updated_at}
-          - atts.each do |att|
-            %th{:class => attribute_header_class(att), :id => attribute_header_id(att) }
-              %a
-                %span.w1= att.humanize
-      %tbody
-        - unless @templates.blank?
-          = render :partial => "template", :collection => @templates
-        - else
+    - if defined?(TemplatesExtension)
+      - results_label = t('templates') + query
+      %h3#templates
+        = results_label
+        = render :partial => 'results_nav'
+      %table#template_list.index.sortable{:summary=>results_label}
+        %thead
           %tr
-            %td.note{:colspan => atts.size }
-              = params[:q].blank? ? "Empty search." : "No results from query."
+            - atts = %w{name page_class_name updated_at}
+            - atts.each do |att|
+              %th{:class => attribute_header_class(att), :id => attribute_header_id(att) }
+                %a
+                  %span.w1= att.humanize
+        %tbody
+          - unless @templates.blank?
+            = render :partial => "template", :collection => @templates
+          - else
+            %tr
+              %td.note{:colspan => atts.size }
+                = params[:q].blank? ? "Empty search." : "No results from query."
 
   - if defined?(BannerRotatorExtension)
     - results_label = t('banner_rotator.banners') + query
