@@ -1,0 +1,51 @@
+h2. Sitemap Search
+
+Created by Sean Cribbs in Fall 2007. 
+Revised and generalized by Sean Cribbs and Andrew vonderLuft in August 2008.
+Extended and refactored by Andrew vonderLuft since then.
+
+Provides a simple content search of pages, snippets, and layouts.
+Contains rudimentary support for scoping searches within a given site when using the multi_site extension.
+
+h2. Revision History
+
+* 4/2011 - UI upgrade for Radiant >= 1.0.0; added Layouts; added templates to search from "Templates extension":https://github.com/avonderluft/radiant-templates-extension
+* 2/2010 - add banners to search, from "BannerRotator extension":https://github.com/avonderluft/radiant-banner_rotator-extension
+* 2/2009 - upgraded for compatibility with Radiant 0.7
+* 12/2008 - initial commit
+
+h2. Requirements
+
+* current version requires Radiant >= 1.0.0
+* tag 0.7.2 available for earlier versions
+
+page_list_view extension must be installed
+
+From your RADIANT_ROOT:
+
+<pre>
+$ script/extension install page_list_view
+</pre>
+
+h2. Installation
+
+From your RADIANT_ROOT:
+
+<pre>
+$ script/extension install sitemap_search
+</pre>
+
+Restart your radiant app, and you should be good to go.
+
+h2. Usage
+
+See the Help doc.
+
+h2. To do
+
+* Include page fields, e.g. 'keywords' and 'description'
+
+h2. Acknowledgments
+
+Thanks to Digital Pulp for funding the initial development of this extension as part of the Redken.com project.
+Further support for generalization and release was provided by Con-way.

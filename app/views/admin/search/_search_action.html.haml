@@ -1,0 +1,7 @@
+%li
+  #site_search.action_button
+    - form_for :site_search, :url => search_path, :html => { :class => 'button_form', :multipart => true } do |f|
+      %span
+        = f.label :site_search, image('search')
+        = text_field_tag :q, params[:q], :title => t('sitemap_search.search_content'), :cols => "20"
+        = f.submit  t('sitemap_search.search_content')

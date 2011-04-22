@@ -1,0 +1,7 @@
+---
+en:
+  sitemap_search:
+    instructions: "Enter query string at bottom of page to search."
+    search: "Search"
+    search_content: "Search Content"
+    search_results_for: "Search Results for"

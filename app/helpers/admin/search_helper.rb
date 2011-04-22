@@ -1,4 +1,4 @@
-module SearchesHelper
+module Admin::SearchHelper
   include Admin::ListViewHelper
   
   def link_text(object)
@@ -15,12 +15,9 @@ module SearchesHelper
   
   def link_url(object)
     case object
-    when Page
-      page_edit_path(:id => object)
-    when Snippet
-      snippet_edit_path(:id => object)
-    when Banner
-      edit_admin_banner_path(:id => object)
+    when Page; edit_admin_page_path(:id => object)
+    when Snippet; edit_admin_snippet_path(:id => object)
+    when Banner; edit_admin_banner_path(:id => object)
     end
   end
   

@@ -1,0 +1,11 @@
+%tr[banner]
+  %td.preview
+    %a{:href => edit_admin_banner_url(banner)}
+      %img.snapshot{:src => banner.background_image, :alt => "#{banner.name} #{t('banner_rotator.banner')}", :title => "#{t('banner_rotator.edit')} #{banner.name} #{t('banner_rotator.banner')}"}
+  %td.name= link_to banner.name, edit_admin_banner_url(banner)
+  %td.status
+    = banner.description if banner.description
+  %td.status{:style=>"font-size:75%"}
+    = banner.link_url if banner.link_url
+  %td.status
+    = banner.updated_at.strftime("%m/%d/%Y at %I:%M %p") if banner.updated_at

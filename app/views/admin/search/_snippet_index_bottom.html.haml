@@ -1,0 +1,5 @@
+#actions
+  = pagination_for(@snippets)
+  %ul
+    %li= link_to image('plus') + " " + t('new_snippet'), new_admin_snippet_url, :class => 'action_button'
+    = render :partial => 'admin/search/search_action'

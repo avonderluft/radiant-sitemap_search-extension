@@ -4,14 +4,19 @@ module SitemapSearch::Model
     base.send :cattr_accessor, :search_fields
     base.send :cattr_accessor, :includes
     if base == Page
-      base.search_fields = [:title, :slug, :keywords, :description, :content]
-      base.search_fields << :draft_content if defined?(ConcurrentDraft)
+      base.search_fields = [:title, :slug, :breadcrumb, :content]
+      base.search_fields << :draft_content if defined?(ConcurrentDraftExtension)
       base.includes = [:parts]
     elsif base == Snippet
       base.search_fields = [:name, :content]
-      base.search_fields << :draft_content if defined?(ConcurrentDraft)
-    elsif defined?(BannerRotator) && base == Banner
-      base.search_fields = [:name, :background_image, :foreground_image, :link_url]
+      base.search_fields << :draft_content if defined?(ConcurrentDraftExtension)
+    elsif base == Layout
+      base.search_fields = [:name, :content]
+      base.search_fields << :draft_content if defined?(ConcurrentDraftExtension)
+    elsif defined?(TemplatesExtension) && base == Template
+      base.search_fields = [:name, :content]
+    elsif defined?(BannerRotatorExtension) && base == Banner
+      base.search_fields = [:name, :description, :background_image, :foreground_image, :link_url]
     end
   end
   

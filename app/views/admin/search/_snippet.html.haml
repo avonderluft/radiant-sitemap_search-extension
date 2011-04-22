@@ -1,0 +1,8 @@
+%tr[snippet]
+  %td.name
+    = image('snippet', :alt => '')
+    = link_to snippet.name, edit_admin_snippet_url(snippet)
+  %td.status
+    = snippet.updated_by.name if snippet.updated_by
+  %td.status
+    = snippet.updated_at.strftime("%m/%d/%Y at %I:%M %p") if snippet.updated_at

@@ -1,0 +1,5 @@
+#actions
+  = pagination_for(@banners)
+  %ul
+    %li= link_to image('plus') + " " + t('banner_rotator.new_banner'), new_admin_banner_url
+    = render :partial => 'admin/search/search_action'

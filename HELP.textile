@@ -1,0 +1,11 @@
+The *Sitemap Search* extension, as its name implies, enables you to search your sitemap; pages, snippets and layouts
+
+h2. Usage
+
+The Search tab is located under 'Content' to the right of 'Pages'
+
+The Search box is located in the lower bar of the index page for Pages, Snippets, Layouts.
+If you have the the BannerRotator extension and/or the Templates extension installed, it will be on those index pages also.
+And of course it is also on the Search Results page.
+
+Enter your search string, and click the button.  Results are sortable by attribute.

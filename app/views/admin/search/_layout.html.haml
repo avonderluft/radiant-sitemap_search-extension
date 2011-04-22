@@ -1,0 +1,8 @@
+%tr[layout]
+  %td.name
+    = image('layout', :alt => '')
+    = link_to layout.name, edit_admin_layout_url(layout)
+  %td.status
+    = layout.updated_by.name if layout.updated_by
+  %td.status
+    = layout.updated_at.strftime("%m/%d/%Y at %I:%M %p") if layout.updated_at

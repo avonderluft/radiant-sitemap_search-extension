@@ -1,0 +1,8 @@
+%tr[template]
+  %td.name
+    = image('template', :alt => '')
+    = link_to template.name, edit_admin_template_url(template)
+  %td.status
+    = template.page_class_name if template.page_class_name
+  %td.status
+    = template.updated_at.strftime("%m/%d/%Y at %I:%M %p") if template.updated_at

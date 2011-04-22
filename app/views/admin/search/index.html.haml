@@ -1,0 +1,128 @@
+- include_javascript 'admin/ruledtable'
+- include_javascript 'admin/tablekit'
+- @page_title = t('sitemap_search.search_content') + ' - ' + default_page_title
+
+- if params[:q]
+  - query = ': ' + t('sitemap_search.search_results_for') + " '#{params[:q]}'"
+  - results_label = t('pages') + query
+  %h3#pages{:style=>"margin-top:-10px"}
+    = results_label
+    = render :partial => 'results_nav'
+  %table#page_list.index.sortable{:summary=>results_label}
+    %thead
+      %tr
+        - list_display_attributes.each do |att|
+          %th{:class => attribute_header_class(att), :id => attribute_header_id(att) }
+            %a
+              %span.w1= att.humanize
+    %tbody
+      - unless @pages.blank?
+        = render :partial => "admin/pages/page", :collection => @pages
+      - else
+        %tr
+          %td.note{:colspan => list_display_attributes.size }
+            = params[:q].blank? ? "Empty search." : "No results from query."
+            
+  - if designer?         
+    - results_label = t('snippets') + query
+    %h3#snippets
+      = results_label
+      = render :partial => 'results_nav'
+    %table#snippet_list.index.sortable{:summary=>results_label}
+      %thead
+        %tr
+          - atts = %w{name updated_by updated_at}
+          - atts.each do |att|
+            %th{:class => attribute_header_class(att), :id => attribute_header_id(att) }
+              %a
+                %span.w1= att.humanize
+      %tbody
+        - unless @snippets.blank?
+          = render :partial => "snippet", :collection => @snippets
+        - else
+          %tr
+            %td.note{:colspan => atts.size }
+              = params[:q].blank? ? "Empty search." : "No results from query."
+              
+    - results_label = t('layouts') + query
+    %h3#layouts
+      = results_label
+      = render :partial => 'results_nav'
+    %table#layout_list.index.sortable{:summary=>results_label}
+      %thead
+        %tr
+          - atts = %w{name updated_by updated_at}
+          - atts.each do |att|
+            %th{:class => attribute_header_class(att), :id => attribute_header_id(att) }
+              %a
+                %span.w1= att.humanize
+      %tbody
+        - unless @layouts.blank?
+          = render :partial => "layout", :collection => @layouts
+        - else
+          %tr
+            %td.note{:colspan => atts.size }
+              = params[:q].blank? ? "Empty search." : "No results from query."
+              
+    - results_label = t('templates') + query
+    %h3#templates
+      = results_label
+      = render :partial => 'results_nav'
+    %table#template_list.index.sortable{:summary=>results_label}
+      %thead
+        %tr
+          - atts = %w{name page_class_name updated_at}
+          - atts.each do |att|
+            %th{:class => attribute_header_class(att), :id => attribute_header_id(att) }
+              %a
+                %span.w1= att.humanize
+      %tbody
+        - unless @templates.blank?
+          = render :partial => "template", :collection => @templates
+        - else
+          %tr
+            %td.note{:colspan => atts.size }
+              = params[:q].blank? ? "Empty search." : "No results from query."
+
+  - if defined?(BannerRotatorExtension)
+    - results_label = t('banner_rotator.banners') + query
+    %h3#banners
+      = results_label
+      = render :partial => 'results_nav'
+    %table#banner_list.index.sortable{:summary=>results_label}
+      %thead
+        %tr
+          %th.image
+          - atts = %w{name description link_url updated_at}
+          - atts.each do |att|
+            %th{:class => attribute_header_class(att), :id => attribute_header_id(att) }
+              %a
+                %span.w1= att.humanize
+      %tbody
+        - unless @banners.blank?
+          = render :partial => "banner", :collection => @banners
+        - else
+          %tr
+            %td.note{:colspan => atts.size + 1 }
+              = params[:q].blank? ? "Empty search." : "No results from query."
+- else
+  %h3= t('sitemap_search.search_content')
+  = t('sitemap_search.instructions')
+  
+#actions
+  %ul
+    = render :partial => 'search_action'
+
+= render :partial => 'admin/pages/page_list_view_styles'
+- content_for :page_css do
+  :sass
+    .nav
+      float: right
+      font-size: 80%
+    h3
+      padding: 5px
+    td
+      .snapshot
+        height: 40px
+        max-width: 320px
+        border: 1px solid d5f0ff

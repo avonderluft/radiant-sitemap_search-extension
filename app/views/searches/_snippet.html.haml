@@ -1,7 +1,0 @@
-%tr{:class => 'node level-4'}
-  %td{:class => cell_class(snippet)}
-    %span.w1= link_to link_text(snippet), link_url(snippet), link_attrs(snippet)
-  %td
-    %span.w1= snippet.updated_by.name if snippet.updated_by
-  %td
-    %span.w1= snippet.updated_at.strftime("%m/%d/%Y at %I:%M %p") if snippet.updated_at

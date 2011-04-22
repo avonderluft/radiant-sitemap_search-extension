@@ -1,0 +1,15 @@
+.nav
+  = link_to t('pages') + " (#{@pages.size})", '#pages'
+  - if designer?
+    &bull;
+    = link_to t('snippets') + " (#{@snippets.size})", '#snippets'
+    &bull;
+    = link_to t('layouts') + " (#{@layouts.size})", '#layouts'
+    - if defined?(TemplatesExtension)
+      &bull;
+      = link_to t('templates') + " (#{@templates.size})", '#templates'
+    - if defined?(BannerRotatorExtension)
+      &bull;
+      = link_to t('banner_rotator.banners') + " (#{@banners.size})", '#banners'
+  &bull;
+  = link_to 'Top', '#top'

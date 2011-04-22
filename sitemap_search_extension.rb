@@ -2,25 +2,34 @@
 # require_dependency 'application'
 
 class SitemapSearchExtension < Radiant::Extension
-  version "1.2"
-  description "Adds a simple search feature to pages, snippets and banners"
-  url "http://github.com/avonderluft/radiant-sitemap_search-extension/tree/master"
-  
-  define_routes do |map|
-    map.resources :searches, :path_prefix => '/admin'
-  end
-  
+  version "#{File.read(File.expand_path(File.dirname(__FILE__)) + '/VERSION')}"
+  description "Adds simple search feature for pages, snippets, layouts, et al."
+  url "https://github.com/avonderluft/radiant-sitemap_search-extension"
+
   def activate
     unless defined?(PageListView)
       raise "The Page List View extension is required - install from RAILS_ROOT with 'script/extension install page_list_view'"
     end
-    Page.send :include, SitemapSearch::Model
-    Snippet.send :include, SitemapSearch::Model
-    admin.page.index.add :top, 'admin/sitemap_search'
-    admin.snippet.index.add :top, 'admin/sitemap_search'
+    tab "Content" do
+      add_item "Search", '/admin/search'
+    end
+    [Page, Snippet, Layout].each do |klass|
+      klass.send :include, SitemapSearch::Model
+    end
+    admin.snippet.index.bottom.delete 'new_button'
+    admin.snippet.index.add :bottom, 'admin/search/snippet_index_bottom'
+    admin.layout.index.bottom.delete 'new_button'
+    admin.layout.index.add :bottom, 'admin/search/layout_index_bottom'    
+    if defined?(TemplatesExtension)
+      Template.send :include, SitemapSearch::Model
+      admin.template.index.bottom.delete 'new_button'
+      admin.template.index.add :bottom, 'admin/search/banner_index_bottom'
+    end
     if defined?(BannerRotatorExtension)
       Banner.send :include, SitemapSearch::Model
-      admin.banner.index.add :top, 'admin/sitemap_search'
+      admin.banner.index.bottom.delete 'new_button'
+      admin.banner.index.add :bottom, 'admin/search/template_index_bottom'
     end
   end
+
 end
