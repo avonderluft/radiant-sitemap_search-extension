@@ -23,12 +23,12 @@ class SitemapSearchExtension < Radiant::Extension
     if defined?(TemplatesExtension)
       Template.send :include, SitemapSearch::Model
       admin.template.index.bottom.delete 'new_button'
-      admin.template.index.add :bottom, 'admin/search/banner_index_bottom'
+      admin.template.index.add :bottom, 'admin/search/template_index_bottom'
     end
     if defined?(BannerRotatorExtension)
       Banner.send :include, SitemapSearch::Model
       admin.banner.index.bottom.delete 'new_button'
-      admin.banner.index.add :bottom, 'admin/search/template_index_bottom'
+      admin.banner.index.add :bottom, 'admin/search/banner_index_bottom'
     end
   end
 
