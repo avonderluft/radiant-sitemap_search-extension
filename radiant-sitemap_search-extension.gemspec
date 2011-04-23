@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{radiant-sitemap_search-extension}
-  s.version = "1.0.1"
+  s.version = "1.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrew vonderLuft", "Sean Cribbs"]
@@ -39,7 +39,6 @@ Gem::Specification.new do |s|
     "config/routes.rb",
     "lib/sitemap_search/model.rb",
     "lib/tasks/sitemap_search_extension_tasks.rake",
-    "pkg/radiant-sitemap_search-extension-1.0.0.gem",
     "radiant-sitemap_search-extension.gemspec",
     "sitemap_search_extension.rb",
     "spec/controllers/search_controller_spec.rb",
