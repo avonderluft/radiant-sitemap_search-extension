@@ -39,7 +39,6 @@ Gem::Specification.new do |s|
     "config/routes.rb",
     "lib/sitemap_search/model.rb",
     "lib/tasks/sitemap_search_extension_tasks.rake",
-    "pkg/radiant-sitemap_search-extension-1.0.2.gem",
     "radiant-sitemap_search-extension.gemspec",
     "sitemap_search_extension.rb",
     "spec/controllers/search_controller_spec.rb",
