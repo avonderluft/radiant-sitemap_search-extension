@@ -1,4 +1,5 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+#require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe Admin::SearchController do
   dataset :users
@@ -6,9 +7,8 @@ describe Admin::SearchController do
   [:admin, :designer].each do |user|
     describe "search as user with #{user} privileges" do
       before :each do
-        @page, @snippet, @layout = mock_model(Page), mock_model(Snippet), mock_model(Layout)
+        @page, @layout = mock_model(Page), mock_model(Layout)
         Page.stub!(:search).and_return([@page])
-        Snippet.stub!(:search).and_return([@snippet])
         Layout.stub!(:search).and_return([@layout])
         login_as user
       end
@@ -20,13 +20,17 @@ describe Admin::SearchController do
         Page.should_receive(:search).with('radiant').and_return([@page])
         do_get
       end
-      it "should search snippets" do
-        Snippet.should_receive(:search).with('radiant').and_return([@snippet])
-        do_get
-      end
       it "should search layouts" do
         Layout.should_receive(:search).with('radiant').and_return([@layout])
         do_get
+      end
+      if defined?(SnippetsExtension)
+        it "should search snippets" do
+          @snippet = mock_model(Snippet)
+          Snippet.stub!(:search).and_return([@snippet])
+          Snippet.should_receive(:search).with('radiant').and_return([@snippet])
+          do_get
+        end
       end
       if defined?(TemplatesExtension)
         it "should search templates" do
@@ -58,9 +62,8 @@ describe Admin::SearchController do
   [:existing, :non_admin].each do |user|
     describe "search as user with #{user} privileges" do
       before :each do
-        @page, @snippet, @layout = mock_model(Page), mock_model(Snippet), mock_model(Layout)
+        @page, @layout = mock_model(Page), mock_model(Layout)
         Page.stub!(:search).and_return([@page])
-        Snippet.stub!(:search).and_return([@snippet])
         Layout.stub!(:search).and_return([@layout])
         login_as user
       end
@@ -73,17 +76,21 @@ describe Admin::SearchController do
         Page.should_receive(:search).with('radiant').and_return([@page])
         do_get
       end
-      it "should not search snippets" do
-        Snippet.should_not_receive(:search).with('radiant')
-        do_get
-      end
       it "should not search layouts" do
         Layout.should_not_receive(:search).with('radiant')
         do_get
       end
+      if defined?(SnippetsExtension)
+        it "should not search templates" do
+          @snippet = mock_model(Snippet)
+          Snippet.stub!(:search).and_return([@snippet])
+          Snippet.should_not_receive(:search).with('radiant')
+          do_get
+        end
+      end
       if defined?(TemplatesExtension)
         it "should not search templates" do
-          @banner = mock_model(Template)
+          @template = mock_model(Template)
           Template.stub!(:search).and_return([@template])
           Template.should_not_receive(:search).with('radiant')
           do_get

@@ -7,10 +7,10 @@ module SitemapSearch::Model
       base.search_fields = [:title, :slug, :breadcrumb, :content]
       base.search_fields << :draft_content if defined?(ConcurrentDraftExtension)
       base.includes = [:parts]
-    elsif base == Snippet
+    elsif base == Layout
       base.search_fields = [:name, :content]
       base.search_fields << :draft_content if defined?(ConcurrentDraftExtension)
-    elsif base == Layout
+    elsif defined?(SnippetsExtension) && base == Snippet
       base.search_fields = [:name, :content]
       base.search_fields << :draft_content if defined?(ConcurrentDraftExtension)
     elsif defined?(TemplatesExtension) && base == Template
