@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{radiant-sitemap_search-extension}
-  s.version = "1.0.3"
+  s.name = "radiant-sitemap_search-extension"
+  s.version = "1.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrew vonderLuft", "Sean Cribbs"]
-  s.date = %q{2011-06-20}
-  s.description = %q{Adds search feature for pages, snippets, layouts, et al.}
-  s.email = %q{avonderluft@avlux.net}
+  s.date = "2013-01-30"
+  s.description = "Adds search feature for pages, snippets, layouts, et al."
+  s.email = "avonderluft@avlux.net"
   s.extra_rdoc_files = [
     "README.textile"
   ]
@@ -47,16 +47,10 @@ Gem::Specification.new do |s|
     "spec/spec.opts",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{https://github.com/avonderluft/radiant-sitemap_search-extension}
+  s.homepage = "https://github.com/avonderluft/radiant-sitemap_search-extension"
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Sitemap Search Extension for Radiant CMS}
-  s.test_files = [
-    "spec/controllers/search_controller_spec.rb",
-    "spec/models/page_extensions_spec.rb",
-    "spec/models/snippet_extensions_spec.rb",
-    "spec/spec_helper.rb"
-  ]
+  s.rubygems_version = "1.8.24"
+  s.summary = "Sitemap Search Extension for Radiant CMS"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
